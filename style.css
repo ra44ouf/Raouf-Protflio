@@ -28,6 +28,34 @@
   margin: 0;
   padding: 0;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  -webkit-tap-highlight-color: transparent !important; /* Force remove mobile tap highlight globally */
+  -webkit-touch-callout: none; /* Prevent system menus on long press */
+}
+
+*:focus, 
+*:active, 
+button:focus, 
+button:active, 
+textarea:focus, 
+input:focus {
+  outline: none !important; /* Remove focus outline and blue border on all browsers */
+  box-shadow: none !important; /* Some browsers use box-shadow instead of outline */
+}
+
+/* Re-allow text selection for readable text, but not for buttons */
+p, h1, h2, h3, span, div:not(.btn-main):not(.control-btn):not(.catcard):not(.projcard):not(.tbadge) {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+button, 
+.btn-main, 
+.control-btn, 
+.catcard, 
+.projcard, 
+.tbadge {
+  -webkit-user-select: none; /* Prevent text selection on buttons */
+  user-select: none;
 }
 
 body {
@@ -205,29 +233,87 @@ body {
   background: var(--grad-primary);
   color: #fff;
   border: none;
-  padding: 18px 40px;
+  padding: 18px 50px;
   border-radius: 50px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 900;
   cursor: pointer;
   box-shadow: 0 10px 25px rgba(127, 119, 221, 0.4);
+  transition: all 0.3s ease;
 }
 
-.btn-main:active { transform: scale(0.96); }
+.btn-main:active {
+   transform: scale(0.95);
+ }
 
-textarea {
-  width: 100%;
-  background: var(--panel-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 18px;
-  padding: 15px;
-  color: var(--text-main);
-  font-family: inherit;
-  resize: none;
-}
+ textarea {
+   width: 100%;
+   background: var(--panel-bg);
+   border: 1px solid var(--border-color);
+   border-radius: 18px;
+   padding: 15px;
+   color: var(--text-main);
+   font-family: inherit;
+   resize: none;
+ }
 
 @media (max-width: 480px) {
-  .badges-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-  .cat-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .screen { padding: 2rem 1rem; }
+  .btn-main {
+    padding: 14px 32px;
+    font-size: 15px;
+    border-radius: 40px;
+  }
+  
+  .control-btn {
+    height: 36px;
+    min-width: 36px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+  
+  .top-controls {
+    top: 10px;
+    width: calc(100% - 20px);
+  }
+  
+  .screen {
+    padding: 1.5rem 1rem;
+    gap: 1.2rem;
+  }
+  
+  .glass-card {
+    padding: 1.5rem;
+    border-radius: 24px;
+  }
+  
+  h1 { font-size: 26px !important; }
+  p { font-size: 14px !important; }
+  
+  .badges-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  
+  .tbadge {
+    border-radius: 16px;
+    font-size: 10px;
+  }
+  
+  .tbadge img {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .cat-grid {
+    gap: 10px;
+  }
+  
+  .catcard {
+    padding: 1rem;
+    border-radius: 18px;
+  }
+  
+  .catcard div[style*="font-size:40px"] {
+    font-size: 32px !important;
+  }
 }
