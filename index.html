@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>متجر رؤف | Raouf Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="app">
+    <!-- Top Controls -->
+    <div class="top-controls">
+      <button class="control-btn back-btn" id="global-back" onclick="handleGlobalBack()">
+        <span data-t="back">رجوع</span>
+      </button>
+      <button class="control-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+      <button class="control-btn" onclick="toggleTheme()" id="theme-btn">
+        <span id="theme-icon">🌙</span>
+      </button>
+    </div>
+
+    <!-- S0: Welcome Screen -->
+    <div id="s0" class="screen" style="display:flex;">
+      <div class="glass-card">
+        <div style="font-size:60px; margin-bottom:1rem;">👋</div>
+        <h1 data-t="welcome" style="font-size:32px; font-weight:900; margin-bottom:10px;">أهلاً بك، أنا رؤف</h1>
+        <p data-t="intro" style="font-size:16px; color:var(--text-dim); line-height:1.6; margin-bottom:2rem;">
+          أرحب بك لكي تبدأ في جعل فكرتك موقعاً حقيقياً
+        </p>
+        <button data-t="startBtn" onclick="startExperience()" class="btn-main">ابدأ الآن</button>
+      </div>
+    </div>
+
+    <!-- S1: Tech Stack -->
+    <div id="s1" class="screen">
+      <h2 data-t="techIntro" style="text-align:center; font-weight:900; font-size:22px; margin-bottom:1rem;">
+        هذه اللغات والتقنيات التي أصنع بها كل المواقع
+      </h2>
+      
+      <div class="badges-grid">
+        <div class="tbadge" style="background:#e34c2622; color:#e34c26;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg">HTML</div>
+        <div class="tbadge" style="background:#264de422; color:#264de4;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg">CSS</div>
+        <div class="tbadge" style="background:#f7df1e22; color:#f7df1e;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">JS</div>
+        <div class="tbadge" style="background:#38bdf822; color:#38bdf8;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg">TW</div>
+        <div class="tbadge" style="background:#23272f22; color:#61dafb;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg">React</div>
+        <div class="tbadge" style="background:#3178c622; color:#3178c6;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg">TS</div>
+        <div class="tbadge" style="background:#33333322; color:#83cd29;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg">Node</div>
+        <div class="tbadge" style="background:#3776ab22; color:#3776ab;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">Python</div>
+        <div class="tbadge" style="background:#00599d22; color:#00599d;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg">C++</div>
+      </div>
+
+      <button data-t="next" onclick="goToStep(2)" class="btn-main" style="margin-top:2rem;">التالي</button>
+    </div>
+
+    <!-- S2: Categories -->
+    <div id="s2" class="screen">
+      <div style="text-align:center;">
+        <h2 data-t="chooseCat" style="font-weight:900; font-size:26px;">اختر نوع مشروعك</h2>
+        <p data-t="catDesc" style="color:var(--text-dim);">حدد الفئة الأقرب لما تريد بناءه</p>
+      </div>
+
+      <div class="cat-grid">
+        <div class="catcard" onclick="selectCat('Landing Page')">
+          <div style="font-size:40px; margin-bottom:10px;">🚀</div>
+          <div data-t="landing" style="font-weight:900;">صفحة هبوط</div>
+        </div>
+        <div class="catcard" onclick="selectCat('Interactive Site')">
+          <div style="font-size:40px; margin-bottom:10px;">⚡</div>
+          <div data-t="interactive" style="font-weight:900;">موقع تفاعلي</div>
+        </div>
+        <div class="catcard" onclick="selectCat('Dashboard')">
+          <div style="font-size:40px; margin-bottom:10px;">📊</div>
+          <div data-t="dash" style="font-weight:900;">لوحة تحكم</div>
+        </div>
+        <div class="catcard" onclick="selectCat('News Portal')">
+          <div style="font-size:40px; margin-bottom:10px;">📰</div>
+          <div data-t="news" style="font-weight:900;">بوابة أخبار</div>
+        </div>
+      </div>
+      <button data-t="back" onclick="goToStep(1)" class="btn-main" style="background:transparent; border:1px solid var(--border-color); color:var(--text-main); box-shadow:none;">رجوع</button>
+    </div>
+
+    <!-- S3: Projects -->
+    <div id="s3" class="screen" style="justify-content:flex-start;">
+      <div style="width:100%; display:flex; justify-content:space-between; align-items:center;">
+        <div style="font-weight:900;"><span data-t="selected">المختارات</span>: <span id="cart-count">0</span></div>
+        <div style="font-weight:900; color:#22c55e;">$<span id="total-price">0</span></div>
+      </div>
+
+      <textarea id="idea-input" data-t="ideaPlaceholder" rows="3" placeholder="💡 هل لديك فكرة خاصة أو تعديلات؟"></textarea>
+
+      <div id="projects-grid" style="width:100%; display:grid; gap:15px;"></div>
+
+      <button data-t="sendWA" onclick="sendWA()" class="btn-main" style="width:100%; background:#22c55e; margin-top:2rem;">إرسال عبر واتساب 🚀</button>
+    </div>
+
+    <!-- Disclaimer Overlay -->
+    <div id="disclaimer" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:200; align-items:center; justify-content:center; padding:20px; backdrop-filter:blur(5px);">
+      <div class="glass-card" style="max-width:400px;">
+        <div style="font-size:50px; margin-bottom:1rem;">💎</div>
+        <h3 data-t="qualityTitle" style="font-weight:900; font-size:22px; margin-bottom:10px;">الجودة هي معيارنا</h3>
+        <p data-t="qualityDesc" style="font-size:14px; color:var(--text-dim); line-height:1.6; margin-bottom:2rem;">
+          نحن لا نستخدم قوالب جاهزة. كل سطر كود يكتب خصيصاً لمشروعك.
+        </p>
+        <div style="display:flex; gap:10px;">
+          <button data-t="later" onclick="document.getElementById('disclaimer').style.display='none'" class="btn-main" style="flex:1; background:transparent; border:1px solid var(--border-color); color:var(--text-main); box-shadow:none;">لاحقاً</button>
+          <button data-t="agree" onclick="handleYes()" class="btn-main" style="flex:1;">أوافق ✓</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
